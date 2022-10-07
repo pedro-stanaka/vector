@@ -1,0 +1,16 @@
+containers:
+  default:
+    build:
+      from: ubuntu-latest
+      type: ci
+
+steps:
+  - label: Prepare
+    timeout: 30m
+    run:
+    - sudo -E bash scripts/environment/bootstrap-ubuntu-20.04.sh
+    - bash scripts/environment/prepare.sh
+  - label: Build Vector
+    timeout: 30m
+    run:
+    - make package-x86_64-unknown-linux-gnu-all
