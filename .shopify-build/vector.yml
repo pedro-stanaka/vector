@@ -8,8 +8,9 @@ steps:
   - label: Prepare
     timeout: 30m
     run:
-    - sudo -E bash scripts/environment/bootstrap-ubuntu-20.04.sh
+    - bash scripts/environment/bootstrap-ubuntu-20.04.sh
     - bash scripts/environment/prepare.sh
+  - wait
   - label: Build Vector
     timeout: 30m
     run:
