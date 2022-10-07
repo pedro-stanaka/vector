@@ -9,7 +9,8 @@ steps:
     - bash scripts/environment/install-protoc.sh
     - rustup target add x86_64-unknown-linux-gnu
     # - make package-x86_64-unknown-linux-gnu-all
-    - PATH="$PATH:$(pwd)/bin" cargo build --target=x86_64-unknown-linux-gnu --release
+    - cargo fetch
+    # - PATH="$PATH:$(pwd)/bin" cargo build --target=x86_64-unknown-linux-gnu --release
     cache:
     - ~/.cargo/registry
     - ~/.cargo/git
