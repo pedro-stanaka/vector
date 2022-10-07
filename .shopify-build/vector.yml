@@ -55,3 +55,6 @@ steps:
     - ~/.cargo/git
     - target
     timeout: 180m
+    env:
+      SHOPIFY_BUILD_MEMORY_LIMIT: 10g
+      SHOPIFY_BUILD_CPU_LIMIT: '4'
