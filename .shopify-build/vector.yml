@@ -1,13 +1,10 @@
 containers:
   default:
-    build:
-      from: ubuntu-latest
-      type: ci
+    docker: cimg/rust:1.64.0-node
 
 steps:
   - label: Prepare and Build Vector
     timeout: 30m
     run:
-    - bash scripts/environment/bootstrap-ubuntu-20.04.sh
-    - bash scripts/environment/prepare.sh
+    - rustup target add x86_64-unknown-linux-gnu
     - make package-x86_64-unknown-linux-gnu-all
