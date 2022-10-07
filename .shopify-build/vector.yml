@@ -10,7 +10,7 @@ steps:
     - rustup target add x86_64-unknown-linux-gnu
     # - make package-x86_64-unknown-linux-gnu-all
     - cargo fetch
-    # - PATH="$PATH:$(pwd)/bin" cargo build --target=x86_64-unknown-linux-gnu --release
+    - PATH="$PATH:$(pwd)/bin" cargo build --target=x86_64-unknown-linux-gnu --release
     cache:
     - ~/.cargo/registry
     - ~/.cargo/git
