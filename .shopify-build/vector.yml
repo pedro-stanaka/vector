@@ -6,6 +6,36 @@ steps:
   - label: Prepare and Build Vector
     timeout: 120m
     run:
+    - |
+      apt-get update && apt-get install awscli \
+        build-essential \
+        ca-certificates \
+        cmake \
+        cmark-gfm \
+        curl \
+        docker-compose \
+        gawk \
+        gnupg2 \
+        gnupg-agent \
+        gnuplot \
+        jq \
+        libclang-dev \
+        libsasl2-dev \
+        libssl-dev \
+        llvm \
+        locales \
+        nodejs \
+        npm \
+        pkg-config \
+        python3-pip \
+        rename \
+        rpm \
+        ruby-bundler \
+        shellcheck \
+        sudo \
+        unzip \
+        wget \
+        yarn
     - bash scripts/environment/install-protoc.sh
     - rustup target add x86_64-unknown-linux-gnu
     # - make package-x86_64-unknown-linux-gnu-all
