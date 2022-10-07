@@ -4,7 +4,7 @@ containers:
 
 steps:
   - label: Prepare and Build Vector
-    timeout: 120m
+    timeout: 180m
     run:
     - apt update --yes
     - |
@@ -54,3 +54,4 @@ steps:
     - ~/.cargo/registry
     - ~/.cargo/git
     - target
+    timeout: 180m
