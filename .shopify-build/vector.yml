@@ -6,6 +6,9 @@ steps:
   - label: Prepare and Build Vector
     timeout: 180m
     run:
+    - mkdir -p /tmp/.cargo
+    - whoami
+    - echo $CARGO_HOME
     - apt update --yes
     - |
       apt install --yes \
@@ -13,7 +16,7 @@ steps:
         apt-utils \
         apt-transport-https
     - apt upgrade --yes
-    - | 
+    - |
       apt install --yes \
         awscli \
         build-essential \
@@ -54,7 +57,6 @@ steps:
     - ~/.cargo/registry
     - ~/.cargo/git
     - target
-    timeout: 180m
     env:
       SHOPIFY_BUILD_MEMORY_LIMIT: 10g
       SHOPIFY_BUILD_CPU_LIMIT: '4'
