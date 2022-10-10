@@ -1,23 +1,21 @@
 containers:
   default:
     docker: rust:1.64.0-bullseye
-
+  vector:
+    dockerfile:
 steps:
   - label: Prepare and Build Vector
     timeout: 180m
     run:
     - mkdir -p /tmp/.cargo
-    - whoami
-    - echo $CARGO_HOME
-    - apt update --yes
+    -
     - |
-      apt install --yes \
+      apt update --yes \
+        && apt upgrade --yes \
+        && apt install --yes \
         software-properties-common \
         apt-utils \
-        apt-transport-https
-    - apt upgrade --yes
-    - |
-      apt install --yes \
+        apt-transport-https \
         awscli \
         build-essential \
         ca-certificates \
@@ -45,18 +43,22 @@ steps:
         sudo \
         unzip \
         wget \
-        yarn
-    - apt clean
-
+        yarn \
+        && apt clean
     - bash scripts/environment/install-protoc.sh
     - rustup target add x86_64-unknown-linux-gnu
-    # - make package-x86_64-unknown-linux-gnu-all
-    - cargo fetch
     - PATH="$PATH:$(pwd)/bin" cargo build --target=x86_64-unknown-linux-gnu --release
     cache:
-    - ~/.cargo/registry
-    - ~/.cargo/git
+    - /tmp/.cargo/registry
+    - /tmp/.cargo/git
     - target
+    artifact_paths:
+      - target/release/vector*
     env:
       SHOPIFY_BUILD_MEMORY_LIMIT: 10g
       SHOPIFY_BUILD_CPU_LIMIT: '4'
+      CARGO_HOME: /tmp/.cargo
+      TARGET: x86_64-unknown-linux-gnu
+#  - wait
+#
+#  - build: vector
